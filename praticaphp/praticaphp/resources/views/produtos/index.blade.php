@@ -10,7 +10,7 @@
         <p style="color:green;">{{ session('success') }}</p>
     @endif
 
-    <form action="/produtos" method="POST">
+    <form action="{{ route('produtos.store') }}" method="POST">
         @csrf
         <label>Nome:</label>
         <input type="text" name="nome" required>
