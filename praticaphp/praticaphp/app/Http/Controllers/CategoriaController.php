@@ -10,16 +10,17 @@ class CategoriaController extends Controller
     public function index()
     {
         $categorias = Categoria::all();
-        return view('categorias', compact('categorias'));
+        return view('categorias.index', compact('categorias'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nome' => 'required',
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string'
         ]);
 
-        Categoria::create($request->only(['nome', 'descricao']));
+        Categoria::create($request->only('nome', 'descricao'));
 
         return redirect('/categorias')->with('success', 'Categoria cadastrada com sucesso!');
     }

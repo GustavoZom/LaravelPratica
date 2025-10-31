@@ -10,17 +10,17 @@ class ProdutoController extends Controller
     public function index()
     {
         $produtos = Produto::all();
-        return view('produtos', compact('produtos'));
+        return view('produtos.index', compact('produtos'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nome' => 'required',
+            'nome' => 'required|string|max:255',
             'preco' => 'required|numeric'
         ]);
 
-        Produto::create($request->only(['nome', 'preco']));
+        Produto::create($request->only('nome', 'preco'));
 
         return redirect('/produtos')->with('success', 'Produto cadastrado com sucesso!');
     }

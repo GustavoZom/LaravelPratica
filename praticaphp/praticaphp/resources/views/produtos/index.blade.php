@@ -14,20 +14,16 @@
         @csrf
         <label>Nome:</label>
         <input type="text" name="nome" required>
-        <br>
         <label>Preço:</label>
-        <input type="number" name="preco" step="0.01" required>
-        <br><br>
+        <input type="number" step="0.01" name="preco" required>
         <button type="submit">Cadastrar</button>
     </form>
 
     <h2>Lista de Produtos</h2>
     <ul>
         @foreach($produtos as $produto)
-            <li>{{ $produto->nome }} - R$ {{ $produto->preco }}</li>
+            <li>{{ $produto->nome }} - R$ {{ number_format($produto->preco, 2, ',', '.') }}</li>
         @endforeach
     </ul>
-
-    <a href="/categorias">Ir para Categorias</a>
 </body>
 </html>
