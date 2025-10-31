@@ -22,6 +22,7 @@ class ProdutoController extends Controller
 
         Produto::create($request->only('nome', 'preco'));
 
-        return redirect('/')->with('success', 'Produto cadastrado com sucesso!');
+        // redireciona para a rota nomeada
+        return redirect()->route('produtos.index')->with('success', 'Produto cadastrado com sucesso!');
     }
 }
